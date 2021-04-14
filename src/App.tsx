@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useEffect, useState} from 'react';
+import useAsb, {Quote} from "./useAsb";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const [status, setStatus] = useState<string | null>(null);
+  const [quote, setQuote] = useState<Quote | null>(null);
+
+  const asb = useAsb();
+
+  useEffect(() => {
+    const interval = setInterval(async () => {
+      if (asb) {
+        const quote = await asb.quote();
+        setQuote(quote);
+      } else {
+        setStatus("ASB not initialized...");
+      }
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [asb, quote]);
+
+  if (quote) {
+    return <div>Quote: {quote}</div>;
+  } else {
+    if (status) {
+      return <div>Status: {status}</div>;
+    }
+
+    return <div>Neither status nor quote</div>;
+  }
 }
 
 export default App;
