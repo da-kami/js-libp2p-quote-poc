@@ -9,7 +9,7 @@ import PeerId from "peer-id";
 import wrap from "it-pb-rpc";
 
 const QUOTE_PROTOCOL = "/comit/xmr/btc/bid-quote/1.0.0";
-const ASB_MULTI_ADR = Multiaddr("/ip4/127.0.0.1/tcp/8765/ws");
+const ASB_MULTI_ADR = Multiaddr("/ip4/127.0.0.1/tcp/9940/ws");
 const ASB_PEER_ID = PeerId.createFromB58String(
   "12D3KooWCdMKjesXMJz1SiZ7HgotrxuqhQJbP5sgBm2BwP1cqThi"
 );
