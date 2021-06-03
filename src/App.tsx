@@ -20,7 +20,7 @@ function App() {
           setStatus("Error when fetching quote: " + e.toString());
         }
       } else {
-        setStatus("ASB not initialized...");
+        setStatus("ASB not initialized....");
       }
     }, 5000);
     return () => clearInterval(interval);
@@ -31,7 +31,7 @@ function App() {
       <div>
         <div>Status: {status}</div>
         <div>
-          price {quote.price} quantity {quote.max_quantity}
+          timestamp {quote.timestamp.toString()} price {quote.price} quantity {quote.max_quantity}
         </div>
       </div>
     );
