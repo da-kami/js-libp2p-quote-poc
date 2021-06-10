@@ -11,7 +11,7 @@ import wrap from "it-pb-rpc";
 const QUOTE_PROTOCOL = '/comit/xmr/btc/bid-quote/1.0.0';
 
 // Note: The multiaddr needs the ws protocl specifier to be processed correctly
-const ASB_MULTI_ADR_TESTNET = '/onion3/pzbmpqsyi2j2za2fwmiognupwozjlcoajbd3cgboetql7ooah63zywqd:9940/ws';
+const ASB_MULTI_ADR_TESTNET = '/dns4/pzbmpqsyi2j2za2fwmiognupwozjlcoajbd3cgboetql7ooah63zywqd.onion/tcp/9940/ws';
 const ASB_PEER_ID_TESTNET =
     '12D3KooWCdMKjesXMJz1SiZ7HgotrxuqhQJbP5sgBm2BwP1cqThi';
 
