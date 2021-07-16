@@ -1,37 +1,36 @@
 import React, { useEffect, useState } from "react";
-import useAsb, { Quote } from "./useAsb";
+import useRendezvous from "./useRendezvous";
+import {rendezvous} from "./proto";
 
 function App() {
   const [status, setStatus] = useState<string | null>(null);
-  const [quote, setQuote] = useState<Quote | null>(null);
+  const [discovery, setDiscovery] = useState<rendezvous.pb.Message.IDiscoverResponse | null | undefined>(null);
 
-  // TODO: handle dropped connection (retry)
-  const asb = useAsb();
+  const rendezvous = useRendezvous();
 
   useEffect(() => {
     const interval = setInterval(async () => {
-      if (asb) {
+      if (rendezvous) {
         try {
-          const quote = await asb.quote();
-          console.log("received quote: " + JSON.stringify(quote));
-          setQuote(quote);
-          setStatus("Current quote is:");
+          const discoverResponse = await rendezvous.discover();
+          setDiscovery(discoverResponse);
+          setStatus("Discovered:");
         } catch (e) {
-          setStatus("Error when fetching quote: " + e.toString());
+          setStatus("Error: " + e.toString());
         }
       } else {
-        setStatus("ASB not initialized....");
+        setStatus("Rendezvous server problem...");
       }
-    }, 5000);
+    }, 10000);
     return () => clearInterval(interval);
-  }, [asb, quote]);
+  }, [rendezvous, discovery]);
 
-  if (quote) {
+  if (discovery) {
     return (
       <div>
         <div>Status: {status}</div>
         <div>
-          timestamp {quote.timestamp.toString()} price {quote.price} quantity {quote.max_quantity}
+          { JSON.stringify(discovery)}
         </div>
       </div>
     );
