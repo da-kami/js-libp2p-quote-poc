@@ -14,15 +14,12 @@
     "libp2p-mplex": "^0.10.3",
     "libp2p-noise": "^3.0.0",
     "libp2p-tcp": "^0.15.4",
-    "libp2p-websockets": "git+https://github.com/da-kami/js-libp2p-websockets.git#84f5b1a48c25a546c6b4b617990a6e15f74db9fa",
+    "libp2p-websockets": "^0.15.7",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
     "typescript": "^4.1.2",
     "web-vitals": "^1.0.1"
-  },
-  "resolutions": {
-    "**/multiaddr-to-uri": "git+https://github.com/da-kami/js-multiaddr-to-uri.git#b3ee17539b303341c4f827514ba29664d5d16a7d"
   },
   "scripts": {
     "start": "react-scripts start",
